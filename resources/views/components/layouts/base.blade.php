@@ -16,14 +16,17 @@
 @endphp
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full light scroll-smooth"
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="no-js"
     dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
 
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    {{-- Favicons - Place favicon.ico in the root directory --> --}}
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
 
     <title>{{ $title }}</title>
     <meta name="description" content="{{ $description }}" />
@@ -31,7 +34,7 @@
 
     <link rel="canonical" href="{{ trailing_slash_it(url()->current()) }}">
 
-    <!-- Open Graph -->
+    {{-- Open Graph --> --}}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="{{ config('brand.social_media.twitter') }}" />
     <meta name="twitter:creator" content="{{ config('brand.social_media.twitter') }}" />
@@ -72,9 +75,20 @@
         }
     </style>
 
-
     @stack('styles')
-    @vite(['resources/css/app.scss', 'resources/js/app.js'])
+    {{-- Bootstrap --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}"> --}}
+    {{-- Fontawesome Icon --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
+    {{-- Layerslider --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/layerslider.min.css') }}">
+    {{-- Magnific Popup --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.min.css') }}">
+    {{-- Slick Slider --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.min.css') }}">
+    {{-- Theme Custom CSS --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     @livewireStyles
 </head>
 
@@ -88,7 +102,28 @@
     {{ $slot }}
 
     <x-footers.default :siteSettings="$siteSettings" :menu='$menu' />
-    <x-switch />
+    {{-- Scroll To Top --}}
+    <a href="#" class="scrollToTop scroll-btn"><i class="far fa-arrow-up"></i></a>
+    {{-- Jquery --}}
+    <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+    {{-- Slick Slider --}}
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/app.min.js') }}"></script> --}}
+    {{-- Layerslider --}}
+    <script src="{{ asset('assets/js/layerslider.utils.js') }}"></script>
+    <script src="{{ asset('assets/js/layerslider.transitions.js') }}"></script>
+    <script src="{{ asset('assets/js/layerslider.kreaturamedia.jquery.js') }}"></script>
+    {{-- jquery ui --}}
+    <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
+    {{-- Bootstrap --}}
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    {{-- Magnific Popup --}}
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    {{-- Isotope Filter --}}
+    <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
+    {{-- Main Js File --}}
+    <script src="{{ asset('assets/js/main.js') }}"></script>
     @livewireScripts
 
     @stack('scripts')

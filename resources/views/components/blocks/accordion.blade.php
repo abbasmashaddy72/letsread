@@ -1,10 +1,9 @@
-<div class="grid grid-cols-1 pb-8 text-center">
-    <h3 class="mb-4 text-xl font-medium md:text-2xl">{{ $data['title'] }}</h3>
-    <p class="max-w-xl mx-auto text-slate-400">{{ $data['message'] }}</p>
+<div class="text-center title-area text-lg-start">
+    <span class="sec-subtitle">{{ $data['message'] }}</span>
+    <h2 class="sec-title">{{ $data['title'] }}</h2>
 </div>
 
-<div id="accordion-color" data-accordion="collapse"
-    data-active-classes="bg-primary-100 dark:bg-gray-800 text-primary-600 dark:text-white">
+<div class="accordion accordion-style1" id="faqVersion1">
     @if (isset($data['data']) && class_exists($data['data']))
         @php
             $modelClass = $data['data'];

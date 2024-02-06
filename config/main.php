@@ -176,7 +176,7 @@ return [
         '\App\Models\User',
     ]),
     'font' => [
-        'url' => 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Sixtyfour&display=swap',
-        'family' => 'Inter'
+        'url' => 'https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Jost:wght@400;500&display=swap',
+        'family' => 'Fredoka'
     ],
 ];
