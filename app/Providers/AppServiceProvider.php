@@ -13,7 +13,6 @@ use Spatie\Health\Checks\Checks\EnvironmentCheck;
 use Spatie\Health\Checks\Checks\DatabaseSizeCheck;
 use Spatie\Health\Checks\Checks\OptimizedAppCheck;
 use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
-use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use BezhanSalleh\FilamentShield\Facades\FilamentShield;
 use Spatie\Health\Checks\Checks\DatabaseConnectionCountCheck;
 use Spatie\SecurityAdvisoriesHealthCheck\SecurityAdvisoriesCheck;
@@ -51,10 +50,6 @@ class AppServiceProvider extends ServiceProvider
             SecurityAdvisoriesCheck::new(),
             UsedDiskSpaceCheck::new(),
         ]);
-        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-            $switch->visible(outsidePanels: true)
-                ->locales(getLocales());
-        });
         FilamentShield::configurePermissionIdentifierUsing(
             function ($resource) {
                 $str = str($resource::getModel())

@@ -47,65 +47,25 @@ class TopicFactory extends Factory
     public function definition()
     {
         // Generate English title for slug
-        $titleEn = $this->faker->sentence(rand(1, 8));
-
-        // English
-        $fakerEn = \Faker\Factory::create('en_US');
-
-        // French
-        $fakerFr = \Faker\Factory::create('fr_FR');
-
-        // Arabic
-        $fakerAr = \Faker\Factory::create('ar_SA');
+        $title = $this->faker->sentence(rand(1, 8));
 
         return [
-            'title' => [
-                'en' => $titleEn,
-                'fr' => $fakerFr->sentence(rand(1, 8)),
-                'ar' => $fakerAr->sentence(rand(1, 8)),
-            ],
-            'slug' => Str::slug($titleEn),
+            'title' => $title,
+            'slug' => Str::slug($title),
             'status' => 'Draft',
             'content' => [
-                'en' => [
-                    [
-                        'bg_color' => '',
-                        'blocks' => [
-                            [
-                                'type' => 'rich-text',
-                                'data' => [
-                                    'content' => '<h1>' . Str::title($fakerEn->words(rand(3, 8), true)) . '</h1><p>' . collect($fakerEn->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($fakerEn->words(rand(3, 8), true)) . '</h2><p>' . collect($fakerEn->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
-                                ],
+                [
+                    'image_type' => '',
+                    'combine' => false,
+                    'blocks' => [
+                        [
+                            'type' => 'rich-text',
+                            'data' => [
+                                'content' => '<h1>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h1><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h2><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
                             ],
                         ],
-                    ]
-                ],
-                'fr' => [
-                    [
-                        'bg_color' => '',
-                        'blocks' => [
-                            [
-                                'type' => 'rich-text',
-                                'data' => [
-                                    'content' => '<h1>' . Str::title($fakerFr->words(rand(3, 8), true)) . '</h1><p>' . collect($fakerFr->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($fakerFr->words(rand(3, 8), true)) . '</h2><p>' . collect($fakerFr->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
-                                ],
-                            ],
-                        ],
-                    ]
-                ],
-                'ar' => [
-                    [
-                        'bg_color' => '',
-                        'blocks' => [
-                            [
-                                'type' => 'rich-text',
-                                'data' => [
-                                    'content' => '<h1>' . Str::title($fakerAr->words(rand(3, 8), true)) . '</h1><p>' . collect($fakerAr->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($fakerAr->words(rand(3, 8), true)) . '</h2><p>' . collect($fakerAr->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
-                                ],
-                            ],
-                        ],
-                    ]
-                ],
+                    ],
+                ]
             ],
         ];
     }

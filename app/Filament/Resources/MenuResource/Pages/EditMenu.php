@@ -8,8 +8,6 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditMenu extends EditRecord
 {
-    use EditRecord\Concerns\Translatable;
-
     protected static string $resource = MenuResource::class;
 
     protected function getHeaderActions(): array
@@ -17,7 +15,6 @@ class EditMenu extends EditRecord
         return [
             Actions\ViewAction::make(),
             Actions\DeleteAction::make(),
-            Actions\LocaleSwitcher::make(),
         ];
     }
 }

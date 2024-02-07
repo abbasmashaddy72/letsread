@@ -6,11 +6,7 @@ use Illuminate\View\Component;
 
 class Hero extends Component
 {
-    public $type;
-
-    public $media;
-
-    public $cta;
+    public $content;
 
     /**
      * Create a new component instance.
@@ -19,14 +15,16 @@ class Hero extends Component
      */
     public function __construct(array $data)
     {
-        $this->type = $data['type'];
-        $this->cta = $data['cta'];
+        $this->content = $data;
+        // dd($data);
+        // $this->type = $data['type'];
+        // $this->cta = $data['cta'];
 
-        if ($data['type'] == 'oembed') {
-            $this->media = $data['oembed'];
-        } else {
-            $this->media = config('curator.model')::where('id', $data['image'])->first();
-        }
+        // if ($data['type'] == 'oembed') {
+        //     $this->media = $data['oembed'];
+        // } else {
+        //     $this->media = config('curator.model')::where('id', $data['image'])->first();
+        // }
     }
 
     /**

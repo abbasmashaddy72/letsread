@@ -40,8 +40,7 @@ class SiteSettings extends SettingsPage
                 Forms\Components\Section::make()->schema([
                     Forms\Components\Group::make()->schema([
                         Forms\Components\Group::make()->schema([
-                            CuratorPicker::make('dark_logo'),
-                            CuratorPicker::make('light_logo'),
+                            CuratorPicker::make('logo'),
                             TimezoneSelect::make('timezone')
                                 ->searchable(),
                             Country::make('location')
@@ -49,18 +48,6 @@ class SiteSettings extends SettingsPage
                             Forms\Components\Select::make('currency')
                                 ->searchable()
                                 ->options(config('main.currencies')),
-                            Forms\Components\Select::make('locales')->multiple()
-                                ->options(transformSupportedLocales())
-                                ->getOptionLabelUsing(fn ($value): ?string => $value)
-                                ->searchable(),
-                            Forms\Components\Select::make('primary_color')
-                                ->options(getColors(500))
-                                ->allowHtml()
-                                ->searchable(),
-                            Forms\Components\Select::make('default_locale')
-                                ->options(transformSupportedLocales())
-                                ->getOptionLabelUsing(fn ($value): ?string => $value)
-                                ->searchable(),
                         ])->columns(2),
                         Forms\Components\Group::make()->schema([
                             Forms\Components\TextInput::make('name'),

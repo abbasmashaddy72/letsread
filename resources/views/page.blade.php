@@ -1,10 +1,15 @@
 <x-layouts.base :meta="$page->meta">
     @section('hero')
-        <x-hero :data="$page->hero ?? [
-            'type' => 'image',
-            'image' => $page->meta->ogImage->id,
-            'cta' => $page->title,
-        ]" />
+        @if (Route::currentRoutename() == 'welcome')
+            <x-hero :data="$page->hero" />
+        @else
+            <x-hero :data="[
+                'type' => 'image',
+                'image' => $page->meta->ogImage->id,
+                'cta' => $page->title,
+                'title' => $page->meta->title,
+            ]" />
+        @endif
     @endsection
 
     <div class="py-8 pt-16 lg:py-12">

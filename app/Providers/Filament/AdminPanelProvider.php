@@ -148,7 +148,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentSpatieLaravelBackupPlugin::make()
                     ->usingQueue('backups'),
                 FilamentSpatieLaravelHealthPlugin::make(),
-                SpatieLaravelTranslatablePlugin::make()->defaultLocales(getLocales()),
+                SpatieLaravelTranslatablePlugin::make()->defaultLocales(['en']),
                 BoltPlugin::make()
                     ->navigationGroupLabel('Dynamic Forms'),
                 LightSwitchPlugin::make(),

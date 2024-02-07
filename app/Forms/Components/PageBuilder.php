@@ -9,7 +9,9 @@ use App\Forms\Blocks\Accordion;
 use App\Forms\Blocks\ImageText;
 use App\Forms\Blocks\OnlyImage;
 use App\Forms\Blocks\SelectForm;
+use App\Forms\Blocks\ImageContent;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\Repeater;
 
@@ -20,11 +22,16 @@ class PageBuilder
         return Repeater::make($field)
             ->label('Sections')
             ->schema([
-                Select::make('bg_color')
-                    ->label('Background Color')
-                    ->allowHtml()
+                Select::make('image_type')
                     ->searchable()
-                    ->options(array_merge(['half' => 'Half'], getColors(200))),
+                    ->options([
+                        'clouds' => 'Clouds',
+                        'game' => 'Games',
+                        'light_blue' => 'Light Blue',
+                        'dark_purple' => 'Dark Purple',
+                    ]),
+                Toggle::make('combine')
+                    ->helperText('Will only combine 2 Blocks'),
                 Builder::make('blocks')
                     ->blocks([
                         RichText::make(),
@@ -34,6 +41,7 @@ class PageBuilder
                         Cards::make(),
                         ImageText::make(),
                         OnlyImage::make(),
+                        ImageContent::make(),
                     ]),
             ])->columnSpanFull();
     }

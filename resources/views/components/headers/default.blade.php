@@ -4,7 +4,7 @@
         <button class="vs-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo">
             <a href="{{ route('welcome') }}">
-                <x-curator-glider :media="$siteSettings->dark_logo" :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" />
+                <x-curator-glider :media="$siteSettings->logo" :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" />
             </a>
         </div>
         <div class="vs-mobile-menu">
@@ -29,7 +29,7 @@
         <div class="widget ">
             <div class="widget-about">
                 <div class="footer-logo">
-                    <x-curator-glider :media="$siteSettings->dark_logo" :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" />
+                    <x-curator-glider :media="$siteSettings->logo" :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" />
                 </div>
                 <p class="mb-0">{{ $siteSettings->description }}</p>
             </div>
@@ -91,8 +91,8 @@
                 <div class="row gx-3 align-items-center justify-content-between">
                     <div class="col-8 col-sm-auto">
                         <div class="header-logo">
-                            <a href="index.html">
-                                <x-curator-glider :media="$siteSettings->dark_logo" :srcset="['1200w', '1024w', '640w']"
+                            <a href="{{ route('welcome') }}">
+                                <x-curator-glider :media="$siteSettings->logo" :srcset="['1200w', '1024w', '640w']"
                                     sizes="(max-width: 1200px) 100vw, 1024px" />
                             </a>
                         </div>
@@ -120,7 +120,7 @@
                     <div class="col-auto d-none d-xl-block">
                         @foreach ($menu->where('location', 'headerButtons')->pluck('items') as $items)
                             @foreach ($items as $translation)
-                                <a href="{{ $translation['url'] }}" class="vs-btn sideMenuToggler"
+                                <a href="{{ $translation['url'] }}" class="vs-btn"
                                     @if ($translation['blank']) target="__blank" @endif>{{ $translation['title'] }}</a>
                             @endforeach
                         @endforeach

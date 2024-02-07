@@ -9,17 +9,10 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Livewire\Attributes\Reactive;
-use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\MenuResource\Pages;
 
 class MenuResource extends Resource
 {
-    use Translatable;
-
-    #[Reactive]
-    public ?string $activeLocale = null;
-
     protected static ?string $model = Menu::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-bars-3';

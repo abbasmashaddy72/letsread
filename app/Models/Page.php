@@ -7,15 +7,12 @@ use App\Concerns\Sluggable;
 use App\Concerns\HasFeaturedImage;
 use App\Concerns\HasPublishedScope;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Page extends Model
 {
-    use HasFactory, HasPublishedScope, Sluggable, HasMeta, SoftDeletes, HasFeaturedImage, HasTranslations;
-
-    public $translatable = ['title', 'content'];
+    use HasFactory, HasPublishedScope, Sluggable, HasMeta, SoftDeletes, HasFeaturedImage;
 
     /**
      * The attributes that are mass assignable.

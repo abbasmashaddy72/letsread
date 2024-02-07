@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
-            $table->json('title');
+            $table->string('title');
             $table->string('slug')->unique();
             $table->string('status')->default('Draft');
-            $table->json('excerpt')->nullable();
-            $table->json('content')->nullable();
+            $table->longText('excerpt')->nullable();
+            $table->longText('content')->nullable();
             $table->date('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();

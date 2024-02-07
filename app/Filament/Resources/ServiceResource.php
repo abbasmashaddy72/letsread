@@ -13,10 +13,8 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use FilamentAddons\Enums\Status;
-use Livewire\Attributes\Reactive;
 use App\Forms\Components\PageBuilder;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Resources\Concerns\Translatable;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use App\Filament\Resources\ServiceResource\Pages;
 use FilamentAddons\Forms\Components\TitleWithSlug;
@@ -28,11 +26,6 @@ use App\Filament\Resources\ServiceResource\RelationManagers;
 
 class ServiceResource extends Resource
 {
-    use Translatable;
-
-    #[Reactive]
-    public ?string $activeLocale = null;
-
     protected static ?string $model = Service::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';
@@ -72,7 +65,7 @@ class ServiceResource extends Resource
                             ->required()
                             ->maxLength(255),
                         IconPicker::make('icon')
-                            ->sets(['remix'])
+                            ->sets(['fontawesome-solid'])
                             ->columns([
                                 'default' => 1,
                                 'lg' => 3,

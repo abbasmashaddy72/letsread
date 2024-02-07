@@ -20,6 +20,7 @@ class Hero
                     ->options([
                         'image' => 'Image',
                         'oembed' => 'oEmbed',
+                        'slider' => 'Slider',
                     ])
                     ->reactive(),
                 AddonForms\Components\OEmbed::make('hero.oembed')
@@ -27,9 +28,24 @@ class Hero
                     ->visible(fn (Get $get): bool => $get('hero.type') == 'oembed' ?: false),
                 CuratorPicker::make('hero.image')
                     ->label('Image')
-                    ->visible(),
+                    ->visible(fn (Get $get): bool => $get('hero.type') == 'image' ?: false),
                 TiptapEditor::make('hero.cta')
+                    ->visible(fn (Get $get): bool => $get('hero.type') != 'slider' ?: false)
                     ->label('Call to Action'),
+                Forms\Components\Repeater::make('hero.sliders')
+                    ->visible(fn (Get $get): bool => $get('hero.type') == 'slider' ?: false)
+                    ->label('Sliders')
+                    ->schema([
+                        CuratorPicker::make('image')
+                            ->label('Image')
+                            ->visible(),
+                        Forms\Components\TextInput::make('text_1'),
+                        Forms\Components\TextInput::make('text_2'),
+                        Forms\Components\TextInput::make('text_3'),
+                        Forms\Components\TextInput::make('button_text'),
+                        Forms\Components\TextInput::make('button_url'),
+                    ])->cloneable()
+                    ->columns(3),
             ]);
     }
 }

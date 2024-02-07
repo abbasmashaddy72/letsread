@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->json('title');
+            $table->string('title');
             $table->string('slug')->unique();
             $table->string('status')->default('Draft');
-            $table->longText('hero')->nullable();
+            $table->json('hero')->nullable();
             $table->json('content')->nullable();
             $table->string('layout')->default('default');
             $table->boolean('front_page')->default(false);

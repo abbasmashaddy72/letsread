@@ -3,7 +3,7 @@
         <div class="container">
             <div class="text-center row gx-60 gy-4 text-lg-start justify-content-between align-items-center">
                 <div class="col-lg"><a href="{{ route('welcome') }}">
-                        <x-curator-glider :media="$siteSettings->dark_logo" :srcset="['1200w', '1024w', '640w']"
+                        <x-curator-glider :media="$siteSettings->logo" :srcset="['1200w', '1024w', '640w']"
                             sizes="(max-width: 1200px) 100vw, 1024px" />
                     </a></div>
                 <div class="col-lg-auto">

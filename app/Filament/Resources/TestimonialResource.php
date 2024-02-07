@@ -9,9 +9,7 @@ use Filament\Tables\Table;
 use App\Models\Testimonial;
 use Filament\Resources\Resource;
 use FilamentAddons\Enums\Status;
-use Livewire\Attributes\Reactive;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Resources\Concerns\Translatable;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
@@ -23,11 +21,6 @@ use IbrahimBougaoua\FilamentRatingStar\Columns\RatingStarColumn;
 
 class TestimonialResource extends Resource
 {
-    use Translatable;
-
-    #[Reactive]
-    public ?string $activeLocale = null;
-
     protected static ?string $model = Testimonial::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-face-smile';

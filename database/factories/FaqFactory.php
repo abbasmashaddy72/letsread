@@ -42,22 +42,12 @@ class FaqFactory extends Factory
      */
     public function definition()
     {
-        $titleEn = $this->faker->sentence(rand(1, 8));
-        $titleFr = $this->faker->sentence(rand(1, 8));
-        $titleAr = $this->faker->sentence(rand(1, 8));
+        $title = $this->faker->sentence(rand(1, 8));
 
         return [
-            'question' => [
-                'en' => $titleEn,
-                'fr' => $titleFr,
-                'ar' => $titleAr,
-            ],
+            'question' => $title,
             'status' => 'Draft',
-            'answer' => [
-                'en' => '<h1>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h1><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h2><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
-                'fr' => '<h1>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h1><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h2><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
-                'ar' => '<h1>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h1><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h2><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
-            ],
+            'answer' => '<h1>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h1><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h2><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
         ];
     }
 }

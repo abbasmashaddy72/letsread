@@ -22,7 +22,7 @@ class MetaFactory extends Factory
             'title' => Str::ucfirst($this->faker->words(rand(2, 6), true)),
             'description' => $this->faker->text,
             'indexable' => $this->faker->boolean,
-            'og_image' => Media::inRandomOrder()->limit(1)->first()->id,
+            'og_image' => 156,
         ];
     }
 }

@@ -3,14 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Menu extends Model
 {
-    use HasFactory, HasTranslations;
-
-    public $translatable = ['items'];
+    use HasFactory;
     /**
      * The attributes that are mass assignable.
      *

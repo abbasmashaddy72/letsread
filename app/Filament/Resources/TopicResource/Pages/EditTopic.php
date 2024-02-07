@@ -8,8 +8,6 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditTopic extends EditRecord
 {
-    use EditRecord\Concerns\Translatable;
-
     protected static string $resource = TopicResource::class;
 
     protected function getHeaderActions(): array
@@ -19,7 +17,6 @@ class EditTopic extends EditRecord
             Actions\DeleteAction::make(),
             Actions\ForceDeleteAction::make(),
             Actions\RestoreAction::make(),
-            Actions\LocaleSwitcher::make(),
         ];
     }
 }

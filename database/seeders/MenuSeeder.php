@@ -14,111 +14,75 @@ class MenuSeeder extends Seeder
     public function run(): void
     {
         // Header Menu
-        $headerMenu = new Menu([
+        Menu::create([
             'location' => 'header',
             'items' => [
-                'en' => [
-                    [
-                        'title' => 'Home',
-                        'url' => '/home',
-                        'blank' => false,
-                    ],
-                    [
-                        'title' => 'Contact Us',
-                        'url' => '/contact',
-                        'blank' => false,
-                    ],
+                [
+                    'title' => 'Home',
+                    'url' => '/',
+                    'blank' => false,
                 ],
-                'fr' => [
-                    [
-                        'title' => 'Accueil',
-                        'url' => '/home',
-                        'blank' => false,
-                    ],
-                    [
-                        'title' => 'Contactez-nous',
-                        'url' => '/contact',
-                        'blank' => false,
-                    ],
+                [
+                    'title' => 'Gallery',
+                    'url' => '/gallery',
+                    'blank' => false,
                 ],
-                'ar' => [
-                    [
-                        'title' => 'الصفحة الرئيسية',
-                        'url' => '/home',
-                        'blank' => false,
-                    ],
-                    [
-                        'title' => 'اتصل بنا',
-                        'url' => '/contact',
-                        'blank' => false,
-                    ],
+                [
+                    'title' => 'Programs',
+                    'url' => '/programs',
+                    'blank' => false,
+                ],
+                [
+                    'title' => 'About Us',
+                    'url' => '/about-us',
+                    'blank' => false,
+                ],
+                [
+                    'title' => 'Contact Us',
+                    'url' => '/contact-us',
+                    'blank' => false,
                 ],
             ],
             'activated' => true,
         ]);
-
-        $headerMenu->save();
 
         // Footer1 Menu
-        $footer1Menu = new Menu([
+        Menu::create([
             'location' => 'footer1',
             'items' => [
-                'en' => [
-                    [
-                        'title' => 'Contact',
-                        'url' => '/contact',
-                        'blank' => false,
-                    ]
-                ],
-                'fr' => [
-                    [
-                        'title' => 'Contact',
-                        'url' => '/contact',
-                        'blank' => false,
-                    ]
-                ],
-                'ar' => [
-                    [
-                        'title' => 'اتصل بنا',
-                        'url' => '/contact',
-                        'blank' => false,
-                    ]
-                ],
+                [
+                    'title' => 'Contact',
+                    'url' => '/contact',
+                    'blank' => false,
+                ]
             ],
             'activated' => true,
         ]);
-
-        $footer1Menu->save();
 
         // Footer2 Menu
-        $footer2Menu = new Menu([
+        Menu::create([
             'location' => 'footer2',
             'items' => [
-                'en' => [
-                    [
-                        'title' => 'Privacy Policy',
-                        'url' => '/privacy-policy',
-                        'blank' => false,
-                    ]
-                ],
-                'fr' => [
-                    [
-                        'title' => 'Politique de confidentialité',
-                        'url' => '/privacy-policy',
-                        'blank' => false,
-                    ]
-                ],
-                'ar' => [
-                    [
-                        'title' => 'سياسة الخصوصية',
-                        'url' => '/privacy-policy',
-                        'blank' => false,
-                    ]
-                ],
+                [
+                    'title' => 'Privacy Policy',
+                    'url' => '/privacy-policy',
+                    'blank' => false,
+                ]
             ],
             'activated' => true,
         ]);
 
-        $footer2Menu->save();
+        // Header Button Menu
+        Menu::create([
+            'location' => 'headerButtons',
+            'items' => [
+                [
+                    'title' => 'Login',
+                    'url' => '/login',
+                    'blank' => false,
+                ]
+            ],
+            'activated' => true,
+        ]);
     }
 }

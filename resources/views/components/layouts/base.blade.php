@@ -89,6 +89,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/slick.min.css') }}">
     {{-- Theme Custom CSS --}}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/extra.css') }}">
     @livewireStyles
 </head>
 

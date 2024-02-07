@@ -13,21 +13,14 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use FilamentAddons\Enums\Status;
-use Livewire\Attributes\Reactive;
 use App\Forms\Components\PageBuilder;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\PostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Coolsam\FilamentFlatpickr\Forms\Components\Flatpickr;
 
 class PostResource extends Resource
 {
-    use Translatable;
-
-    #[Reactive]
-    public ?string $activeLocale = null;
-
     protected static ?string $model = Post::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-square-2-stack';

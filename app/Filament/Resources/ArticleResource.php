@@ -14,22 +14,15 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use FilamentAddons\Enums\Status;
-use Livewire\Attributes\Reactive;
 use Illuminate\Support\Facades\Log;
 use App\Forms\Components\PageBuilder;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\ArticleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Coolsam\FilamentFlatpickr\Forms\Components\Flatpickr;
 
 class ArticleResource extends Resource
 {
-    use Translatable;
-
-    #[Reactive]
-    public ?string $activeLocale = null;
-
     protected static ?string $model = Article::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-bookmark';
@@ -74,16 +67,7 @@ class ArticleResource extends Resource
                         Forms\Components\Select::make('topic_id')
                             ->relationship('topic')
                             ->getOptionLabelFromRecordUsing(function (Topic $topic, $livewire) {
-                                // Debugging statement
-                                Log::info('Active Locale: ' . $livewire->activeLocale);
-
-                                // Adjust according to your actual implementation
-                                $translatedTitle = $topic->getTranslation('title', $livewire->activeLocale);
-
-                                // Debugging statement
-                                Log::info('Translated Title: ' . $translatedTitle);
-
-                                return $translatedTitle ?? $topic->title; // Fallback to default title if translation is not available
+                                return $topic->title;
                             })
                             ->searchable()
                             ->preload()

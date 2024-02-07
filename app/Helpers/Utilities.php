@@ -73,42 +73,6 @@ if (!function_exists('is_front_page')) {
     }
 }
 
-if (!function_exists('getLocales')) {
-    function getLocales(): array
-    {
-        // Skip execution during migrations
-        if (app()->runningInConsole()) {
-            return [];
-        }
-
-        $locales = app(SitesSettings::class)->locales ?? array_keys(config('app.locales'));
-
-        // Remove 'en' if present
-        $locales = array_diff($locales, ['en']);
-
-        // Ensure 'en' is the first element
-        array_unshift($locales, 'en');
-
-        return $locales;
-    }
-}
-
-if (!function_exists('getColors')) {
-    function getColors($weight)
-    {
-        $colors = Arr::except(Color::all(), ['gray', 'zinc', 'neutral', 'stone']);
-        $filteredColors = [];
-
-        foreach ($colors as $colorName => $shades) {
-            if (isset($shades[$weight])) {
-                $filteredColors[ucfirst($colorName)] = "<div class=\"bg-{$colorName}-{$weight} p-2 flex items-center w-full rounded-md\">" . ucfirst($colorName) . "</div>";
-            }
-        }
-
-        return $filteredColors;
-    }
-}
-
 if (!function_exists('getAllModels')) {
     function getAllModels(array $excludeModels = []): array
     {
@@ -128,20 +92,6 @@ if (!function_exists('getAllModels')) {
 
             return in_array($fullyQualifiedClass, $excludeModels) ? [] : [$fullyQualifiedClass => class_basename($class)];
         })->toArray();
-    }
-}
-
-if (!function_exists('transformSupportedLocales')) {
-    function transformSupportedLocales()
-    {
-        $supportedLocales = LaravelLocalization::getSupportedLocales();
-        $transformedArray = [];
-
-        foreach ($supportedLocales as $code => $locale) {
-            $transformedArray[$code] = $locale['name'];
-        }
-
-        return $transformedArray;
     }
 }
 

@@ -9,20 +9,13 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use FilamentAddons\Enums\Status;
-use Livewire\Attributes\Reactive;
 use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\FaqResource\Pages;
-use Filament\Resources\Concerns\Translatable;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FaqResource extends Resource
 {
-    use Translatable;
-
-    #[Reactive]
-    public ?string $activeLocale = null;
-
     protected static ?string $model = Faq::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
