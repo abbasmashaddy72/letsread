@@ -14,7 +14,6 @@ use Guava\FilamentIconPicker\Forms\IconPicker;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Tapp\FilamentTimezoneField\Forms\Components\TimezoneSelect;
 use Parfaitementweb\FilamentCountryField\Forms\Components\Country;
 
@@ -57,7 +56,7 @@ class SiteSettings extends SettingsPage
                                 ->focusNumberFormat(PhoneInputNumberType::E164)
                                 ->useFullscreenPopup()
                                 ->ipLookup(function () {
-                                    return rescue(fn () => Http::get('https://ipinfo.io/json')->json('country'), app()->getLocale(), report: false);
+                                    return rescue(fn () => Http::get('https://ipinfo.io/json')->json('country'), 'en', report: false);
                                 }),
                             Forms\Components\Textarea::make('address')->columnSpanFull(),
                         ])->columns(2),

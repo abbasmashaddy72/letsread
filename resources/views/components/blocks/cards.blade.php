@@ -39,38 +39,42 @@
             @endforeach
         </div>
     @else
-        <div class="row vs-carousel" data-slide-show="4" data-ml-slide-show="3" data-lg-slide-show="3"
-            data-md-slide-show="2">
-            @foreach ($items as $item)
-                <div class="service-style1 col-xl-3">
-                    <div class="service-body">
-                        <div class="service-img">
-                            <a
-                                href="{{ route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug]) }}">
-                                <x-curator-glider :media="$item->meta->ogImage->id ?? $item->image->id" :srcset="['1200w', '1024w', '640w']"
-                                    sizes="(max-width: 1200px) 100vw, 1024px" />
-                            </a>
-                        </div>
-                        <div class="service-content">
-                            <div class="service-icon">
-                                <x-dynamic-component :component="$item['icon'] ?? 'fas-cloud'" />
-                            </div>
-                            <h3 class="service-title line-clamp-1">
+        @if (class_basename($data['data']) == 'Service' && Route::currentRouteName() != 'welcome')
+            @livewire('pagination', ['data' => $data])
+        @else
+            <div class="row vs-carousel" data-slide-show="4" data-ml-slide-show="3" data-lg-slide-show="3"
+                data-md-slide-show="2">
+                @foreach ($items as $item)
+                    <div class="service-style1 col-xl-3">
+                        <div class="service-body">
+                            <div class="service-img">
                                 <a
-                                    href="{{ route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug]) }}">{{ $item->title }}</a>
-                            </h3>
-                            <p class="service-text line-clamp-3">
-                                {{ $item->excerpt ?? $item->content }}
-                            </p>
-                            <div class="service-bottom">
-                                <a href="{{ route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug]) }}"
-                                    class="service-btn">{{ $item['button_text'] ?? 'Read More' }}</a>
+                                    href="{{ route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug]) }}">
+                                    <x-curator-glider :media="$item->meta->ogImage->id ?? $item->image->id" :srcset="['1200w', '1024w', '640w']"
+                                        sizes="(max-width: 1200px) 100vw, 1024px" />
+                                </a>
+                            </div>
+                            <div class="service-content">
+                                <div class="service-icon">
+                                    <x-dynamic-component :component="$item['icon'] ?? 'fas-cloud'" />
+                                </div>
+                                <h3 class="service-title line-clamp-1">
+                                    <a
+                                        href="{{ route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug]) }}">{{ $item->title }}</a>
+                                </h3>
+                                <p class="service-text line-clamp-3">
+                                    {{ $item->excerpt ?? $item->content }}
+                                </p>
+                                <div class="service-bottom">
+                                    <a href="{{ route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug]) }}"
+                                        class="service-btn">{{ $item['button_text'] ?? 'Read More' }}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @endif
     @endif
 @else
     <div class="row">

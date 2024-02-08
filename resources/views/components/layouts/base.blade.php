@@ -16,8 +16,7 @@
 @endphp
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="no-js"
-    dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
+<html class="no-js">
 
 <head>
     <meta charset="utf-8" />
@@ -43,7 +42,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ $title }}" />
     <meta property="og:description" content="{{ $description }}" />
-    <meta property="og:locale" content="{{ app()->getLocale() }}" />
+    <meta property="og:locale" content="en" />
     <meta property="og:site_name" content="{{ config('app.name') }}" />
 
     @if ($ogImage)

@@ -1,9 +1,8 @@
 <?php
 
-use App\Settings\SitesSettings;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\SitemapController;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,33 +15,17 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-if (app()->runningInConsole()) {
-    $default_locale = 'en';
-} else {
-    $default_locale = app(SitesSettings::class)->default_locale ?? 'en';
-}
-
 Route::get('sitemap.xml', [SitemapController::class, 'index']);
 Route::get('sitemap', [SitemapController::class, 'pretty']);
 
-Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['routestatistics', 'firewall.all']
-    ],
-    function () {
-        Route::redirect('login', 'admin/login', 301)->name('login');
+Route::redirect('login', 'admin/login', 301)->name('login');
 
-        Route::middleware('force_trailing_slash')->group(function () {
-            Route::name('welcome')->get('', [\App\Http\Controllers\PageController::class, 'index']);
+Route::name('welcome')->get('', [PageController::class, 'index'])->middleware(['routestatistics', 'firewall.all', 'force_trailing_slash']);
 
-            Route::name('service.show')->get('service/{page:slug}', [\App\Http\Controllers\PageController::class, 'service_show']);
-            Route::name('article.show')->get('article/{page:slug}', [\App\Http\Controllers\PageController::class, 'article_show']);
-            Route::name('post.show')->get('post/{page:slug}', [\App\Http\Controllers\PageController::class, 'post_show']);
-            Route::name('topic.show')->get('topic/{page:slug}', [\App\Http\Controllers\PageController::class, 'topic_show']);
+Route::name('service.show')->get('service/{page:slug}', [PageController::class, 'service_show'])->middleware(['routestatistics', 'firewall.all', 'force_trailing_slash']);
+Route::name('article.show')->get('article/{page:slug}', [PageController::class, 'article_show'])->middleware(['routestatistics', 'firewall.all', 'force_trailing_slash']);
+Route::name('post.show')->get('post/{page:slug}', [PageController::class, 'post_show'])->middleware(['routestatistics', 'firewall.all', 'force_trailing_slash']);
+Route::name('topic.show')->get('topic/{page:slug}', [PageController::class, 'topic_show'])->middleware(['routestatistics', 'firewall.all', 'force_trailing_slash']);
 
-            // this needs to be last
-            Route::name('pages.show')->get('{page:slug}', [\App\Http\Controllers\PageController::class, 'show']);
-        });
-    }
-);
+// this needs to be last
+Route::name('pages.show')->get('{page:slug}', [PageController::class, 'show'])->middleware(['routestatistics', 'firewall.all', 'force_trailing_slash']);

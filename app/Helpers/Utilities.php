@@ -4,7 +4,6 @@ use App\Colors\Color;
 use Illuminate\Support\Arr;
 use App\Settings\SitesSettings;
 use Illuminate\Database\Eloquent\Model;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 if (!function_exists('random_password')) {
     function random_password(): string
