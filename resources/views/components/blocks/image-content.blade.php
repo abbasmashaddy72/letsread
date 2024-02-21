@@ -2,7 +2,26 @@
     @php
         $modelClass = $data['data'];
         $modelData = app($modelClass);
-        $items = $modelData->where('status', 'published')->take((int) $data['count'])->get();
+
+        if ($modelClass === '\App\Models\Testimonial') {
+            $typeCondition = null;
+
+            if (stripos($data['title'], 'Teacher') !== false) {
+                $typeCondition = 'teacher';
+            } elseif (stripos($data['title'], 'Parent') !== false) {
+                $typeCondition = 'parent';
+            }
+
+            if ($typeCondition) {
+                $items = $modelData->where('status', 'published')->where('type', $typeCondition)->take((int) $data['count'])->get();
+            } else {
+                // For other models or no specific title condition, use a normal condition
+                $items = $modelData->where('status', 'published')->take((int) $data['count'])->get();
+            }
+        } else {
+            // For other models, use a normal condition
+            $items = $modelData->where('status', 'published')->take((int) $data['count'])->get();
+        }
     @endphp
     @if (class_basename($modelClass) == 'Testimonial')
         <div class="flex-row-reverse row align-items-center gx-60">

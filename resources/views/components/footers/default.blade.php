@@ -20,7 +20,7 @@
                 <div class="col-lg-4">
                     <div class="widget footer-widget">
                         <div class="widget-about">
-                            <h3 class="mt-n2">Giving your child the best start in life</h3>
+                            <h3 class="mt-n2">{{ $siteSettings->description }}</h3>
                             <p class="map-link"><img src="{{ asset('assets/img/icon/map.svg') }}"
                                     alt="svg">{{ $siteSettings->address }}</p>
                         </div>
@@ -66,15 +66,14 @@
                     <div class="footer-social">
                         @foreach ($siteSettings->social as $item)
                             <a href="{{ $item['link'] }}" target="_blank">
-                                <i class="align-middle {{ $item['icon'] }}"
-                                    title="{{ ucfirst($item['platform']) }}"></i>
+                                <x-dynamic-component :component="$item['icon']" class="align-middle" />
                             </a>
                         @endforeach
                     </div>
                 </div>
                 <div class="col-lg-auto">
                     <p class="copyright-text ">Copyright &copy; {{ date('Y') }}
-                        <a href="route('welcome')">{{ config('app.name') }}</a>
+                        <a href="{{ route('welcome') }}">{{ config('app.name') }}</a>
                     </p>
                 </div>
             </div>

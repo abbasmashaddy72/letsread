@@ -40,6 +40,11 @@ class TestimonialResource extends Resource
                     ->required(),
                 CuratorPicker::make('image_id')->label('Image'),
                 RatingStar::make('rating'),
+                Forms\Components\Select::make('type')
+                    ->options([
+                        'parent' => 'Parent',
+                        'teacher' => 'Teacher',
+                    ]),
                 Forms\Components\TextInput::make('video_link')
                     ->maxLength(255),
                 Forms\Components\Select::make('status')
@@ -55,6 +60,8 @@ class TestimonialResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable(),
                 CuratorColumn::make('image')
                     ->size(40),
                 RatingStarColumn::make('rating'),

@@ -2,7 +2,26 @@
     @php
         $modelClass = $data['data'];
         $modelData = app($modelClass);
-        $items = $modelData->where('status', 'published')->take((int) $data['count'])->get();
+
+        if ($modelClass === '\App\Models\Testimonial') {
+            $typeCondition = null;
+
+            if (stripos($data['title'], 'Teacher') !== false) {
+                $typeCondition = 'teacher';
+            } elseif (stripos($data['title'], 'Parent') !== false) {
+                $typeCondition = 'parent';
+            }
+
+            if ($typeCondition) {
+                $items = $modelData->where('status', 'published')->where('type', $typeCondition)->take((int) $data['count'])->get();
+            } else {
+                // For other models or no specific title condition, use a normal condition
+                $items = $modelData->where('status', 'published')->take((int) $data['count'])->get();
+            }
+        } else {
+            // For other models, use a normal condition
+            $items = $modelData->where('status', 'published')->take((int) $data['count'])->get();
+        }
     @endphp
     <div class="text-center title-area">
         <div class="sec-bubble">
@@ -55,8 +74,8 @@
                                 </a>
                             </div>
                             <div class="service-content">
-                                <div class="service-icon">
-                                    <x-dynamic-component :component="$item['icon'] ?? 'fas-cloud'" />
+                                <div class="service-icon" style="background-color: transparent !important">
+                                    {{-- <x-dynamic-component :component="$item['icon'] ?? 'fas-cloud'" /> --}}
                                 </div>
                                 <h3 class="service-title line-clamp-1">
                                     <a
@@ -67,7 +86,7 @@
                                 </p>
                                 <div class="service-bottom">
                                     <a href="{{ route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug]) }}"
-                                        class="service-btn">{{ $item['button_text'] ?? 'Read More' }}</a>
+                                        class="service-btn">{{ $item['button_text'] ?? 'Inquire Now' }}</a>
                                 </div>
                             </div>
                         </div>

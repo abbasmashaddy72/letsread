@@ -20,6 +20,7 @@ class Testimonial extends Model
     protected $fillable = [
         'title',
         'rating',
+        'type',
         'image_id',
         'video_link',
         'status',
